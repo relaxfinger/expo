@@ -66,7 +66,7 @@ public class ResolveTakenPictureAsyncTask extends AsyncTask<Void, Void, Bundle> 
   }
 
   private int getQuality() {
-    return ((Number) mOptions.get(QUALITY_KEY)).intValue() * 100;
+    return (int)(((double) mOptions.get(QUALITY_KEY)) * 100);
   }
 
   @Override

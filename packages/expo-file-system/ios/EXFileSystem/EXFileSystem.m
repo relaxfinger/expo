@@ -583,7 +583,7 @@ EX_EXPORT_METHOD_AS(downloadResumableStartAsync,
     return;
   }
   
-  NSData *resumeData = data ? [data dataUsingEncoding:NSUTF8StringEncoding] : nil;
+  NSData *resumeData = data ? [[NSData alloc] initWithBase64EncodedString:data options:NSDataBase64EncodingEndLineWithLineFeed] : nil;
   [self _downloadResumableCreateSessionWithUrl:url
                                 withScopedPath:path
                                       withUUID:uuid
@@ -608,7 +608,9 @@ EX_EXPORT_METHOD_AS(downloadResumablePauseAsync,
       NSURLSessionDownloadTask *downloadTask = [downloadTasks firstObject];
       if (downloadTask) {
         [downloadTask cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
-          NSString *data = [[NSString alloc] initWithData:resumeData encoding:NSUTF8StringEncoding];
+
+          NSString *data = [resumeData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+          NSData * temp = [[NSData alloc] initWithBase64EncodedString:data options:NSDataBase64EncodingEndLineWithLineFeed];
           resolve(@{@"resumeData":EXNullIfNil(data)});
         }];
       } else {

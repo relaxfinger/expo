@@ -582,7 +582,6 @@ EX_EXPORT_METHOD_AS(downloadResumableStartAsync,
            nil);
     return;
   }
-  
   NSData *resumeData = data ? [[NSData alloc] initWithBase64EncodedString:data options:NSDataBase64EncodingEndLineWithLineFeed] : nil;
   [self _downloadResumableCreateSessionWithUrl:url
                                 withScopedPath:path
@@ -608,9 +607,7 @@ EX_EXPORT_METHOD_AS(downloadResumablePauseAsync,
       NSURLSessionDownloadTask *downloadTask = [downloadTasks firstObject];
       if (downloadTask) {
         [downloadTask cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
-
           NSString *data = [resumeData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
-          NSData * temp = [[NSData alloc] initWithBase64EncodedString:data options:NSDataBase64EncodingEndLineWithLineFeed];
           resolve(@{@"resumeData":EXNullIfNil(data)});
         }];
       } else {

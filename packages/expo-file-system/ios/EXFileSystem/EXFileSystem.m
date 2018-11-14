@@ -607,6 +607,7 @@ EX_EXPORT_METHOD_AS(downloadResumablePauseAsync,
       NSURLSessionDownloadTask *downloadTask = [downloadTasks firstObject];
       if (downloadTask) {
         [downloadTask cancelByProducingResumeData:^(NSData * _Nullable resumeData) {
+          // That is the only one encoding with which it works
           NSString *data = [resumeData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
           resolve(@{@"resumeData":EXNullIfNil(data)});
         }];

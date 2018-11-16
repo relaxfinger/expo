@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
     ss.dependency 'AppAuth', '~> 0.4'
     ss.dependency 'CocoaLumberjack', '~> 3.2.1'
     ss.dependency 'Crashlytics', '~> 3.8'
-    ss.dependency 'FBAudienceNetwork', '4.99.0'
+    ss.dependency 'FBAudienceNetwork'
     ss.dependency 'FBSDKCoreKit', '4.37.0'
     ss.dependency 'FBSDKLoginKit', '4.37.0'
     ss.dependency 'FBSDKShareKit', '4.37.0'
